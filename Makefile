@@ -1,9 +1,11 @@
 CPP = g++
 CPPFLAGS += -ggdb -O0 -std=c++17 -fPIE
-LIBDIR = -L./third_party/pe-parse/pe-parser-library -L./third_party/libdwarf/libdwarf
+LIBDIR = -L./third_party/dyninst/boost/src/boost/stage/lib -L./third_party/dyninst/elfutils/lib/ \
+         -L./third_party/dyninst/symtabAPI/ -L./third_party/pe-parse/pe-parser-library \
+         -L./third_party/libdwarf/libdwarf
 INCLUDEDIR = -Ithird_party/spii/include -I./ -Ithird_party/spii/thirdparty/Eigen
-LIBS = -lparseAPI -linstructionAPI -lsymtabAPI -lsymLite -ldynDwarf -ldynElf \
-       -lcommon -lelf -ldwarf -lpthread -lpe-parser-library -lspii -lgflags
+LIBS = -lboost_system-mt -lboost_filesystem-mt -lboost_thread-mt -lparseAPI -linstructionAPI -lsymLite \
+       -ldynDwarf -ldynElf -lcommon -lelf -ldwarf -lpthread -lpe-parser-library -lspii -lgflags -lsymtabAPI
 
 OBJ = build/util.o build/util_with_dyninst.o build/disassembly.o \
       build/extractimmediate.o \
